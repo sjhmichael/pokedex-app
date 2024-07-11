@@ -10,10 +10,11 @@ import { AiOutlineColumnHeight } from "react-icons/ai";
 import { TbPokeball } from "react-icons/tb";
 import { MdCatchingPokemon } from "react-icons/md";
 import Capitalize from "../components/Capitalize";
+import BaseStats from "../components/BaseStats";
+import PokemonCry from "../components/PokemonCry";
 
 function Pokemon() {
   const [tab, setTab] = useState(0);
-
   const [pokemonSpecies, setPokemonSpecies] = useState(null);
   const [pokemon, setPokemon] = useState(null);
   const [eggGroup, setEggGroup] = useState([]);
@@ -26,6 +27,7 @@ function Pokemon() {
       .then((response) => {
         setPokemon(response.data);
         setAbilites(response.data.abilities);
+        setStats(response.data.stats);
       });
   }, []);
 
@@ -54,8 +56,15 @@ function Pokemon() {
     setTab(id);
   };
 
+  const totalStats = () => {
+    const totalStat = stats
+      .map((stat) => stat.base_stat)
+      .reduce((acc, curr) => acc + curr, 0);
+    return totalStat;
+  };
+
   console.log("info", pokemon);
-  console.log("species", abilities);
+  console.log("species", pokemonSpecies);
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -157,6 +166,8 @@ function Pokemon() {
                 : "-"}
             </p>
 
+            <PokemonCry sound={pokemon?.cries.latest} />
+
             <div className="bg-white rounded-2xl shadow-lg p-6 py-4 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -237,102 +248,48 @@ function Pokemon() {
           <div className={tab === 1 ? "space-y-5 mt-4" : "hidden"}>
             <div className="text-sm text-gray-600 flex flex-col space-y-4">
               <div className="flex flex-col space-y-4 font-medium w-full">
-                <div className="flex flex-row space-x-4 items-center">
-                  <div className="basis-[40%]">
-                    <h1>HP</h1>
-                  </div>
-                  <div className="basis-[20%] text-black">
-                    <h1>{pokemon?.stats[0].base_stat}</h1>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className={`bg-blue-600 h-2 rounded-full w-[calc((${pokemon?.stats[0].base_stat}/255)*100%)]`}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className="flex flex-row space-x-4 items-center">
-                  <div className="basis-[40%]">
-                    <h1>Attack</h1>
-                  </div>
-                  <div className="basis-[20%] text-black">
-                    <h1>{pokemon?.stats[1].base_stat}</h1>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className={`bg-blue-600 h-2 rounded-full w-[calc((${pokemon?.stats[1].base_stat}/255)*100%)]`}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className="flex flex-row space-x-4 items-center">
-                  <div className="basis-[40%]">
-                    <h1>Defense</h1>
-                  </div>
-                  <div className="basis-[20%] text-black">
-                    <h1>{pokemon?.stats[2].base_stat}</h1>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className={`bg-blue-600 h-2 rounded-full w-[calc((${pokemon?.stats[2].base_stat}/255)*100%)]`}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className="flex flex-row space-x-4 items-center">
-                  <div className="basis-[40%]">
-                    <h1>Sp. Attack</h1>
-                  </div>
-                  <div className="basis-[20%] text-black">
-                    <h1>{pokemon?.stats[3].base_stat}</h1>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className={`bg-blue-600 h-2 rounded-full w-[calc((${pokemon?.stats[3].base_stat}/255)*100%)]`}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className="flex flex-row space-x-4 items-center">
-                  <div className="basis-[40%]">
-                    <h1>Sp. Def</h1>
-                  </div>
-                  <div className="basis-[20%] text-black">
-                    <h1>{pokemon?.stats[4].base_stat}</h1>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className={`bg-blue-600 h-2 rounded-full w-[calc((${pokemon?.stats[4].base_stat}/255)*100%)]`}
-                    ></div>
-                  </div>
-                </div>
-                <div className="flex flex-row space-x-4 items-center">
-                  <div className="basis-[40%]">
-                    <h1>Speed</h1>
-                  </div>
-                  <div className="basis-[20%] text-black">
-                    <h1>{pokemon?.stats[5].base_stat}</h1>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className={`bg-blue-600 h-2 rounded-full w-[calc((${pokemon?.stats[5].base_stat}/255)*100%)]`}
-                    ></div>
-                  </div>
-                </div>
-
-                <div className="flex flex-row space-x-4 items-center">
-                  <div className="basis-[40%]">
-                    <h1>Total</h1>
-                  </div>
-                  <div className="basis-[20%] text-black">
-                    <h1>{pokemon?.stats[4].base_stat}</h1>
-                  </div>
-                  <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className={`bg-blue-600 h-2 rounded-full w-[calc((${pokemon?.stats[4].base_stat}/255)*100%)]`}
-                    ></div>
-                  </div>
-                </div>
+                <BaseStats
+                  stat={"HP"}
+                  value={pokemon?.stats[0].base_stat}
+                  totalValue={255}
+                  color={"#f87171"}
+                />
+                <BaseStats
+                  stat={"Attack"}
+                  value={pokemon?.stats[1].base_stat}
+                  totalValue={255}
+                  color={"#22c55e"}
+                />
+                <BaseStats
+                  stat={"Defense"}
+                  value={pokemon?.stats[2].base_stat}
+                  totalValue={255}
+                  color={"#f87171"}
+                />
+                <BaseStats
+                  stat={"Sp. Attack"}
+                  value={pokemon?.stats[3].base_stat}
+                  totalValue={255}
+                  color={"#22c55e"}
+                />
+                <BaseStats
+                  stat={"Sp. Def"}
+                  value={pokemon?.stats[4].base_stat}
+                  totalValue={255}
+                  color={"#f87171"}
+                />
+                <BaseStats
+                  stat={"Speed"}
+                  value={pokemon?.stats[5].base_stat}
+                  totalValue={255}
+                  color={"#22c55e"}
+                />
+                <BaseStats
+                  stat={"Total"}
+                  value={totalStats()}
+                  totalValue={1530}
+                  color={"#f87171"}
+                />
               </div>
             </div>
           </div>
