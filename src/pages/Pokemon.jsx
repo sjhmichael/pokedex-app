@@ -15,15 +15,16 @@ import PokemonCry from "../components/PokemonCry";
 
 function Pokemon() {
   const [tab, setTab] = useState(0);
-  const [pokemonSpecies, setPokemonSpecies] = useState(null);
   const [pokemon, setPokemon] = useState(null);
+  const [pokemonSpecies, setPokemonSpecies] = useState(null);
+  const [evolution, setEvolution] = useState([null]);
   const [eggGroup, setEggGroup] = useState([]);
   const [abilities, setAbilites] = useState([]);
   const [stats, setStats] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon/gardevoir")
+      .get("https://pokeapi.co/api/v2/pokemon/bulbasaur")
       .then((response) => {
         setPokemon(response.data);
         setAbilites(response.data.abilities);
@@ -41,6 +42,14 @@ function Pokemon() {
         });
     }
   }, [pokemon]);
+
+  useEffect(() => {
+    if (pokemonSpecies) {
+      axios
+        .get(pokemonSpecies.evolution_chain.url)
+        .then((response) => setEvolution(response.data));
+    }
+  }, [pokemonSpecies]);
 
   const femaleGenderRatio = (num) => {
     const percentage = (num / 8) * 100;
@@ -65,6 +74,7 @@ function Pokemon() {
 
   console.log("info", pokemon);
   console.log("species", pokemonSpecies);
+  console.log("evolution", evolution);
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -165,8 +175,6 @@ function Pokemon() {
                 ? pokemonSpecies?.flavor_text_entries[0].flavor_text
                 : "-"}
             </p>
-
-            <PokemonCry sound={pokemon?.cries.latest} />
 
             <div className="bg-white rounded-2xl shadow-lg p-6 py-4 space-y-4">
               <div className="grid grid-cols-2 gap-4">
