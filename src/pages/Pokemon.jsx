@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import Psychic from "../assets/Types/psychic.svg";
-import PsychicIcon from "../components/PsychichIcon";
 import { IoMdFemale, IoMdMale } from "react-icons/io";
 import { RiWeightLine } from "react-icons/ri";
 import { FaArrowLeft, FaRegHeart } from "react-icons/fa6";
@@ -12,6 +10,9 @@ import { MdCatchingPokemon } from "react-icons/md";
 import Capitalize from "../components/Capitalize";
 import BaseStats from "../components/BaseStats";
 import PokemonCry from "../components/PokemonCry";
+import clsx from "clsx";
+import PokemonBackground from "../components/PokemonBackground";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 function Pokemon() {
   const [tab, setTab] = useState(0);
@@ -21,16 +22,18 @@ function Pokemon() {
   const [eggGroup, setEggGroup] = useState([]);
   const [abilities, setAbilites] = useState([]);
   const [stats, setStats] = useState([]);
+  const { pokemonName } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon/bulbasaur")
+      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
       .then((response) => {
         setPokemon(response.data);
         setAbilites(response.data.abilities);
         setStats(response.data.stats);
       });
-  }, []);
+  }, [pokemonName]);
 
   useEffect(() => {
     if (pokemon) {
@@ -61,10 +64,6 @@ function Pokemon() {
     return percentage + "%";
   };
 
-  const changeTab = (id) => {
-    setTab(id);
-  };
-
   const totalStats = () => {
     const totalStat = stats
       .map((stat) => stat.base_stat)
@@ -80,20 +79,18 @@ function Pokemon() {
     <div className="w-full h-full flex items-center justify-center">
       <div className="w-[360px] overflow-clip relative border-gray-100 border-2 rounded-3xl">
         {/* background */}
-        <div className="relative">
-          <div>
-            <MdCatchingPokemon
-              size={250}
-              className="absolute fill-white/30 z-[-1] top-1/2 left-1/2 -translate-x-[40px] translate-y-[180px]"
-            />
-          </div>
-          <div className="absolute left-1/2 -translate-x-1/2 h-[500px] bg-gradient-to-br from-pink-400 to-pink-100 w-[360px] z-[-2]" />
-        </div>
+        <PokemonBackground element={pokemon?.types[0].type.name} />
 
         {/* navbar */}
         <div className="px-4">
-          <div className="flex flex-row items-center justify-between mt-8">
-            <FaArrowLeft size={24} className="fill-white" />
+          <div className="flex flex-row items-center justify-between mt-8 ">
+            <button>
+              <FaArrowLeft
+                size={24}
+                className="fill-white"
+                onClick={() => navigate("/")}
+              />
+            </button>
             <FaRegHeart size={24} className="fill-white" />
           </div>
 
@@ -142,25 +139,45 @@ function Pokemon() {
           <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
             <ul className="flex flex-row -mb-px justify-between">
               <li
-                className="me-2 inline-block text-black pb-4 border-b-2 border-blue-600 hover:cursor-pointer"
+                className={clsx(
+                  "me-2 inline-block hover:cursor-pointer",
+                  tab === 0
+                    ? "text-black pb-4 border-b-2 border-blue-600"
+                    : "text-gray-500 hover:text-gray-600 hover:border-gray-300 hover:border-b-2"
+                )}
                 onClick={() => setTab(0)}
               >
                 About
               </li>
               <li
-                className="me-2 inline-block border-b-2 pb-4 border-transparent hover:text-gray-600 hover:border-gray-300 hover:cursor-pointer"
+                className={clsx(
+                  "me-2 inline-block hover:cursor-pointer",
+                  tab === 1
+                    ? "text-black pb-4 border-b-2 border-blue-600"
+                    : "text-gray-500 hover:text-gray-600 hover:border-gray-300 hover:border-b-2"
+                )}
                 onClick={() => setTab(1)}
               >
                 Base Stats
               </li>
               <li
-                className="me-2 inline-block border-b-2 pb-4 border-transparent hover:text-gray-600 hover:border-gray-300 hover:cursor-pointer"
+                className={clsx(
+                  "me-2 inline-block hover:cursor-pointer",
+                  tab === 2
+                    ? "text-black pb-4 border-b-2 border-blue-600"
+                    : "text-gray-500 hover:text-gray-600 hover:border-gray-300 hover:border-b-2"
+                )}
                 onClick={() => setTab(2)}
               >
                 Evolution
               </li>
               <li
-                className="me-2 inline-block border-b-2 pb-4 border-transparent hover:text-gray-600 hover:border-gray-300 hover:cursor-pointer"
+                className={clsx(
+                  "me-2 inline-block hover:cursor-pointer",
+                  tab === 3
+                    ? "text-black pb-4 border-b-2 border-blue-600"
+                    : "text-gray-500 hover:text-gray-600 hover:border-gray-300 hover:border-b-2"
+                )}
                 onClick={() => setTab(3)}
               >
                 Moves

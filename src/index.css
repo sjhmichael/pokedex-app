@@ -7,3 +7,20 @@
 body {
   font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.pokeBall {
+  animation-name: circle;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes circle {
+  from {
+    transform: rotate(0deg) translate(0, );
+  }
+
+  to {
+    transform: rotate(360deg) translate(0, );
+  }
+}
