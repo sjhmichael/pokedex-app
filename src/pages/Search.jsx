@@ -25,10 +25,7 @@ function Search() {
             What Pokemon are you looking for?
           </h1>
 
-          <form
-            className="hidden text-white md:block mt-8 relative"
-            onSubmit={handleSubmit}
-          >
+          <form className="text-white mt-8 relative" onSubmit={handleSubmit}>
             <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
               <FaSearch className="fill-black" size={14} />
             </div>

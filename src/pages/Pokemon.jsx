@@ -64,6 +64,7 @@ function Pokemon() {
     return percentage + "%";
   };
 
+  //add all stats together
   const totalStats = () => {
     const totalStat = stats
       .map((stat) => stat.base_stat)
@@ -250,11 +251,9 @@ function Pokemon() {
                     <IoMdFemale className="mr-1 fill-pink-400" />
                     <h1>{femaleGenderRatio(pokemonSpecies?.gender_rate)}</h1>
                   </div>
-                  <div className="flex flex-row-reverse items-center">
-                    <h1 className="ml-1">
-                      {maleGenderRatio(pokemonSpecies?.gender_rate)}
-                    </h1>
-                    <IoMdMale className="fill-blue-700" />
+                  <div className="flex flex-row items-center">
+                    <IoMdMale className="mr-1 fill-blue-700" />
+                    <h1>{maleGenderRatio(pokemonSpecies?.gender_rate)}</h1>
                   </div>
                 </div>
                 <div>
