@@ -13,6 +13,7 @@ import PokemonCry from "../components/PokemonCry";
 import clsx from "clsx";
 import PokemonBackground from "../components/PokemonBackground";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
+import EvolutionChain from "../components/EvolutionChain";
 
 function Pokemon() {
   const [tab, setTab] = useState(0);
@@ -26,24 +27,38 @@ function Pokemon() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`)
+      .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, {
+        signal,
+      })
       .then((response) => {
         setPokemon(response.data);
         setAbilites(response.data.abilities);
         setStats(response.data.stats);
       });
+
+    return () => controller.abort;
   }, [pokemonName]);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     if (pokemon) {
       axios
-        .get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}/`)
+        .get(`https://pokeapi.co/api/v2/pokemon-species/${pokemon.id}/`, {
+          signal,
+        })
         .then((response) => {
           setPokemonSpecies(response.data);
           setEggGroup(response.data.egg_groups);
         });
     }
+
+    return () => controller.abort;
   }, [pokemon]);
 
   useEffect(() => {
@@ -72,13 +87,9 @@ function Pokemon() {
     return totalStat;
   };
 
-  console.log("info", pokemon);
-  console.log("species", pokemonSpecies);
-  console.log("evolution", evolution);
-
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <div className="w-[360px] overflow-clip relative border-gray-100 border-2 rounded-3xl">
+      <div className="max-w-[480px] w-full overflow-clip relative border-gray-100 border-2 rounded-3xl">
         {/* background */}
         <PokemonBackground element={pokemon?.types[0].type.name} />
 
@@ -320,7 +331,10 @@ function Pokemon() {
 
           {/* Tab 3 */}
           <div className={tab === 2 ? "space-y-5 mt-4" : "hidden"}>
-            <p className="text-sm text-gray-600">Placeholder 3</p>
+            <EvolutionChain
+              pokemonSpecies={pokemonSpecies}
+              pokemonEvolution={evolution}
+            />
           </div>
 
           {/* Tab 4 */}

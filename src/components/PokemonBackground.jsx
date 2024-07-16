@@ -25,13 +25,13 @@ const Backgrounds = {
 
 const PokemonBackground = ({ element }) => {
   return (
-    <div className="relative">
+    <div className="relative max-w-[480px]">
       <MdCatchingPokemon
-        size={250}
-        className="absolute fill-white/30 z-[-1] top-1/2 left-1/2 -translate-x-[40px] translate-y-[180px]"
+        size={300}
+        className="absolute fill-white/30 z-[-1] top-32 left-1/2"
       />
       <div
-        className={`absolute left-1/2 -translate-x-1/2 h-[500px] w-[360px] z-[-2] ${Backgrounds[element]}`}
+        className={`absolute left-1/2 -translate-x-1/2 h-[500px] w-full z-[-2] ${Backgrounds[element]}`}
       />
     </div>
   );
