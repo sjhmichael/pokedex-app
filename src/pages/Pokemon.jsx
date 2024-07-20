@@ -149,10 +149,10 @@ function Pokemon() {
         {/* pokemon information */}
         <div className=" bg-white rounded-3xl w-full px-4 py-8 mt-[220px]">
           <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200">
-            <ul className="flex flex-row -mb-px justify-between">
+            <ul className="flex flex-row -mb-px justify-between mx-4">
               <li
                 className={clsx(
-                  "me-2 inline-block hover:cursor-pointer",
+                  "inline-block hover:cursor-pointer",
                   tab === 0
                     ? "text-black pb-4 border-b-2 border-blue-600"
                     : "text-gray-500 hover:text-gray-600 hover:border-gray-300 hover:border-b-2"
@@ -163,7 +163,7 @@ function Pokemon() {
               </li>
               <li
                 className={clsx(
-                  "me-2 inline-block hover:cursor-pointer",
+                  "inline-block hover:cursor-pointer",
                   tab === 1
                     ? "text-black pb-4 border-b-2 border-blue-600"
                     : "text-gray-500 hover:text-gray-600 hover:border-gray-300 hover:border-b-2"
@@ -174,7 +174,7 @@ function Pokemon() {
               </li>
               <li
                 className={clsx(
-                  "me-2 inline-block hover:cursor-pointer",
+                  "inline-block hover:cursor-pointer",
                   tab === 2
                     ? "text-black pb-4 border-b-2 border-blue-600"
                     : "text-gray-500 hover:text-gray-600 hover:border-gray-300 hover:border-b-2"
@@ -185,7 +185,7 @@ function Pokemon() {
               </li>
               <li
                 className={clsx(
-                  "me-2 inline-block hover:cursor-pointer",
+                  "inline-block hover:cursor-pointer",
                   tab === 3
                     ? "text-black pb-4 border-b-2 border-blue-600"
                     : "text-gray-500 hover:text-gray-600 hover:border-gray-300 hover:border-b-2"
@@ -331,10 +331,7 @@ function Pokemon() {
 
           {/* Tab 3 */}
           <div className={tab === 2 ? "space-y-5 mt-4" : "hidden"}>
-            <EvolutionChain
-              pokemonSpecies={pokemonSpecies}
-              pokemonEvolution={evolution}
-            />
+            <EvolutionChain pokemonEvolution={evolution} />
           </div>
 
           {/* Tab 4 */}
