@@ -14,6 +14,7 @@ import clsx from "clsx";
 import PokemonBackground from "../components/PokemonBackground";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import EvolutionChain from "../components/EvolutionChain";
+import PokemonMoves from "../components/PokemonMoves";
 
 function Pokemon() {
   const [tab, setTab] = useState(0);
@@ -24,6 +25,7 @@ function Pokemon() {
   const [abilities, setAbilites] = useState([]);
   const [stats, setStats] = useState([]);
   const { pokemonName } = useParams();
+  const [moves, setMoves] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,6 +40,7 @@ function Pokemon() {
         setPokemon(response.data);
         setAbilites(response.data.abilities);
         setStats(response.data.stats);
+        setMoves(response.data.moves);
       });
 
     return () => controller.abort;
@@ -336,7 +339,7 @@ function Pokemon() {
 
           {/* Tab 4 */}
           <div className={tab === 3 ? "space-y-5 mt-4" : "hidden"}>
-            <p className="text-sm text-gray-600">Placeholder 4</p>
+            <PokemonMoves pokemonMoves={moves} />
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowDown } from "react-icons/fa6";
 import Capitalize from "./Capitalize";
 
 const EvolutionChain = ({ pokemonEvolution }) => {
@@ -46,7 +46,7 @@ const EvolutionChain = ({ pokemonEvolution }) => {
     return chain.map((evolution, index) => (
       <div
         key={index}
-        className="flex flex-row items-center w-full justify-between"
+        className="flex flex-col items-center w-full justify-between space-y-6"
       >
         <div className="flex flex-col justify-center items-center">
           <img
@@ -61,11 +61,11 @@ const EvolutionChain = ({ pokemonEvolution }) => {
 
         {evolution.evolves_to.length > 0 && (
           <>
-            <div className="flex flex-col items-center">
-              <FaArrowRight className="fill-gray-400" />
-              <h1>Evolves</h1>
+            <div className="flex flex-row items-center space-x-2">
+              <FaArrowDown className="fill-gray-400" size={24} />
+              <h1>Evolves To</h1>
             </div>
-            <div className="flex flex-col">
+            <div className="grid grid-cols-[auto_auto_auto]">
               {renderEvolutionChain(evolution.evolves_to)}
             </div>
           </>
