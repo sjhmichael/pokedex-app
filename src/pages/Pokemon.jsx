@@ -92,7 +92,7 @@ function Pokemon() {
 
   return (
     <div className="w-full h-full flex items-center justify-center">
-      <div className="max-w-[480px] w-full overflow-clip relative border-gray-100 border-2 rounded-3xl">
+      <div className="max-w-[480px] w-full overflow-clip relative border-gray-100 border-[1px]">
         {/* background */}
         <PokemonBackground element={pokemon?.types[0].type.name} />
 

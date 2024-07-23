@@ -31,20 +31,21 @@ const News = () => {
       <h1 className="text-2xl font-bold">Pokemon News</h1>
       {pokemonNews?.map((items, index) => (
         <div key={index}>
-          <div className="flex flex-row items-center border-b-[1px] border-gray-300 justify-between py-4">
-            <div className="flex flex-col">
-              <h1 className="font-medium text-sm text-balance">
-                {items.title}
-              </h1>
-              <h1 className="text-sm text-gray-500">
-                <DateConverter str={items.publishedAt} />
-              </h1>
-            </div>
+          <div className="flex flex-row border-b-[1px] border-gray-300 justify-between py-4">
+            <a href={items.url} target="_blank" rel="noreferrer">
+              <div className="flex flex-col">
+                <h1 className="font-medium text-xs text-balance pr-4">
+                  {items.title}
+                </h1>
+                <h1 className="text-xs text-gray-500">
+                  <DateConverter str={items.publishedAt} />
+                </h1>
+              </div>
+            </a>
             <img
               src={items.urlToImage}
               alt="article_image"
-              width={120}
-              className="rounded-xl object-cover"
+              className="rounded-xl object-cover h-18 w-32"
             />
           </div>
         </div>
