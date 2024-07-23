@@ -48,12 +48,10 @@ const EvolutionChain = ({ pokemonEvolution }) => {
         key={index}
         className="flex flex-col items-center w-full justify-between space-y-6"
       >
-        <div className="flex flex-col justify-center items-center">
-          <img
-            src={evolution.sprites.front_default}
-            width={96}
-            alt={evolution.name}
-          />
+        <div className="flex flex-col justify-center items-center px-2">
+          <div className="w-24 flex items-center justify-center">
+            <img src={evolution.sprites.front_default} alt={evolution.name} />
+          </div>
           <h1>
             <Capitalize str={evolution.name} />
           </h1>
@@ -61,11 +59,15 @@ const EvolutionChain = ({ pokemonEvolution }) => {
 
         {evolution.evolves_to.length > 0 && (
           <>
-            <div className="flex flex-row items-center space-x-2">
-              <FaArrowDown className="fill-gray-400" size={24} />
-              <h1>Evolves To</h1>
+            <div className="flex flex-row items-center space-x-2 w-[100vw]">
+              <div className="border-b-[1px] w-full border-gray-300" />
+              <div className="flex items-center justify-center whitespace-nowrap font-medium">
+                <h1>Evolves To</h1>
+              </div>
+              <div className="border-b-[1px] w-full border-gray-300" />
             </div>
-            <div className="grid grid-cols-[auto_auto_auto]">
+
+            <div className="grid grid-cols-[auto_auto_auto_auto] justify-center">
               {renderEvolutionChain(evolution.evolves_to)}
             </div>
           </>
@@ -75,7 +77,7 @@ const EvolutionChain = ({ pokemonEvolution }) => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full">
       <h1 className="font-medium">Evolution Chain</h1>
       {renderEvolutionChain(evolutionChain)}
     </div>
