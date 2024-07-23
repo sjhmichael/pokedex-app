@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdCatchingPokemon } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import News from "../components/News";
 
 function Search() {
   const navigate = useNavigate();
@@ -13,13 +14,13 @@ function Search() {
   };
 
   return (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="max-w-[480px] w-full min-h-[700px] overflow-clip relative border-gray-100 border-2 rounded-3xl">
-        <div className="absolute z-[-1] left-[150px] top-[-80px]">
+    <div className="w-full h-full flex items-center justify-center bg-gray-100">
+      <div className="max-w-[480px] w-full min-h-[700px] overflow-clip relative border-gray-200 border-2">
+        <div className="absolute z-[-1] left-[55%] top-[-120px]">
           <MdCatchingPokemon className="fill-gray-300/30" size={300} />
         </div>
 
-        <div className="px-4 mt-32 flex flex-col w-full">
+        <div className="px-4 pt-32 flex flex-col w-full rounded-xl pb-24 border-b-[1px] border-gray-300 bg-white drop-shadow-md">
           <h1 className="font-bold text-3xl text-black text-balance">
             What Pokemon are you looking for?
           </h1>
@@ -32,11 +33,12 @@ function Search() {
               ref={query}
               type="text"
               name="Search movies..."
-              className="w-full rounded-full bg-gray-100 p-2 px-6 text-sm block pl-10 text-gray-900"
+              className="w-full rounded-full bg-gray-100 p-3 px-6 text-sm block pl-10 text-gray-900"
               placeholder="Search Pokemon, Moves, Abilities, etc"
             />
           </form>
         </div>
+        <News />
       </div>
     </div>
   );
