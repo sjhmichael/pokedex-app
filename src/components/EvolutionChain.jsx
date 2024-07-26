@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { FaArrowDown } from "react-icons/fa6";
 import Capitalize from "./Capitalize";
 
 const EvolutionChain = ({ pokemonEvolution }) => {
@@ -40,17 +39,19 @@ const EvolutionChain = ({ pokemonEvolution }) => {
     }
   }, [pokemonEvolution]);
 
+  console.log(evolutionChain[0]?.evolves_to.length);
+
   const renderEvolutionChain = (chain) => {
     if (!chain || chain.length === 0) return null;
 
     return chain.map((evolution, index) => (
       <div
         key={index}
-        className="flex flex-col items-center w-full justify-between space-y-6"
+        className="flex flex-col items-center w-full justify-between space-y-6 z-20"
       >
         <div className="flex flex-col justify-center items-center px-2">
           <div className="w-24 flex items-center justify-center">
-            <img src={evolution.sprites.front_default} alt={evolution.name} />
+            <img src={evolution.sprites?.front_default} alt={evolution.name} />
           </div>
           <h1>
             <Capitalize str={evolution.name} />
@@ -67,7 +68,7 @@ const EvolutionChain = ({ pokemonEvolution }) => {
               <div className="border-b-[1px] w-full border-gray-300" />
             </div>
 
-            <div className="grid grid-cols-[auto_auto_auto_auto] justify-center">
+            <div className="grid grid-cols-[auto_auto_auto_auto] justify-center z-20">
               {renderEvolutionChain(evolution.evolves_to)}
             </div>
           </>
@@ -78,6 +79,24 @@ const EvolutionChain = ({ pokemonEvolution }) => {
 
   return (
     <div className="flex flex-col w-full">
+      <div className="relative text-gray-800/20 font-black text-7xl whitespace-nowrap italic tracking-wider">
+        <div className="absolute left-0 top-9 z-10">
+          <h1>STAGE 1</h1>
+        </div>
+        <span
+          className={
+            evolutionChain[0]?.evolves_to.length > 0 ? "block" : "hidden"
+          }
+        >
+          <div className="absolute left-0 top-[204px] z-10">
+            <h1>STAGE {evolutionChain[0]?.evolves_to.length + 1}</h1>
+          </div>
+          <div className="absolute left-0 top-[396px] z-10">
+            <h1> STAGE {evolutionChain[0]?.evolves_to.length + 2}</h1>
+          </div>
+        </span>
+      </div>
+
       <h1 className="font-medium">Evolution Chain</h1>
       {renderEvolutionChain(evolutionChain)}
     </div>

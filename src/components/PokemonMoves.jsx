@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Capitalize from "./Capitalize";
 
 const PokemonMoves = ({ pokemonMoves }) => {
-  console.log(pokemonMoves);
   return (
     <div className="flex flex-col">
       <h1 className="font-medium">Moves</h1>
