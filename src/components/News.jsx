@@ -48,9 +48,6 @@ const News = () => {
     return `${day} ${month} ${year}`;
   };
 
-  console.log("API Key in Production:", apiKey);
-  console.log("API Key in Production:", process.env.REACT_APP_API_KEY);
-
   return (
     <div className="flex flex-col px-4 pt-8">
       <h1 className="text-2xl font-bold space">Pokemon News</h1>
