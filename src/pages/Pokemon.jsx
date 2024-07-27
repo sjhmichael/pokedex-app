@@ -6,7 +6,7 @@ import { RiWeightLine } from "react-icons/ri";
 import { FaArrowLeft, FaRegHeart } from "react-icons/fa6";
 import { AiOutlineColumnHeight } from "react-icons/ai";
 import { TbPokeball } from "react-icons/tb";
-import { MdCatchingPokemon } from "react-icons/md";
+import Magikarp from "../assets/Misc/Magikarp_Jump_Pattern_01 1.png";
 import Capitalize from "../components/Capitalize";
 import BaseStats from "../components/BaseStats";
 import PokemonCry from "../components/PokemonCry";
@@ -89,6 +89,26 @@ function Pokemon() {
       .reduce((acc, curr) => acc + curr, 0);
     return totalStat;
   };
+
+  console.log(pokemon);
+
+  if (!pokemon) {
+    return (
+      <div className="flex flex-col w-full h-screen items-center justify-center space-y-4 px-4">
+        <img src={Magikarp} />
+        <h1 className="text-3xl font-bold text-center">
+          No Pokemon with that name found {":("}
+        </h1>
+        <p>Return to the main page or search for another pokemon!</p>
+        <button
+          onClick={() => navigate("/")}
+          className="border-black border-[1px] px-4 flex items-center justify-center py-2 rounded-lg bg-white drop-shadow-lg"
+        >
+          Return to Search
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -329,6 +349,9 @@ function Pokemon() {
                   color={"#f87171"}
                 />
               </div>
+            </div>
+            <div className="flex flex-col pt-6">
+              <h1 className="text-black text-xl font-medium">Type Defenses</h1>
             </div>
           </div>
 

@@ -22,7 +22,10 @@ function Search() {
           {/* pokemon background logo */}
           <div className="relative">
             <div className="absolute z-[-1] left-[55%] top-[-250px]">
-              <MdCatchingPokemon className="fill-gray-300/30" size={300} />
+              <MdCatchingPokemon
+                className="fill-gray-300/30 pokeBall"
+                size={300}
+              />
             </div>
           </div>
           <h1 className="font-bold text-3xl text-black text-balance">

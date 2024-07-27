@@ -48,8 +48,6 @@ const News = () => {
     return `${day} ${month} ${year}`;
   };
 
-  console.log(pokemonNews);
-
   return (
     <div className="flex flex-col px-4 pt-8">
       <h1 className="text-2xl font-bold space">Pokemon News</h1>
@@ -58,7 +56,7 @@ const News = () => {
           <div className="flex flex-row border-b-[1px] border-gray-300 justify-between py-4">
             <a href={item.url} target="_blank" rel="noreferrer">
               <div className="flex flex-col">
-                <h1 className="font-medium text-xs text-balance pr-4">
+                <h1 className="font-medium text-sm text-balance pr-4">
                   {item.title}
                 </h1>
                 <h1 className="text-xs text-gray-500 mt-1">

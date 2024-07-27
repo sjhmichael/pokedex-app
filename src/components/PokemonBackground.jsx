@@ -28,7 +28,7 @@ const PokemonBackground = ({ element }) => {
     <div className="relative max-w-[480px]">
       <MdCatchingPokemon
         size={300}
-        className="absolute fill-white/30 z-[-1] top-32 left-1/2"
+        className="absolute fill-white/30 z-[-1] top-32 left-1/2 pokeBall"
       />
       <div
         className={`absolute left-1/2 -translate-x-1/2 h-[500px] w-full z-[-2] ${Backgrounds[element]}`}

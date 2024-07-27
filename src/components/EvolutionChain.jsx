@@ -39,8 +39,6 @@ const EvolutionChain = ({ pokemonEvolution }) => {
     }
   }, [pokemonEvolution]);
 
-  console.log(evolutionChain[0]?.evolves_to.length);
-
   const renderEvolutionChain = (chain) => {
     if (!chain || chain.length === 0) return null;
 
