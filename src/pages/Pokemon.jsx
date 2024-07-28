@@ -15,6 +15,7 @@ import PokemonBackground from "../components/PokemonBackground";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import EvolutionChain from "../components/EvolutionChain";
 import PokemonMoves from "../components/PokemonMoves";
+import DamageRelation from "../components/DamageRelation";
 
 function Pokemon() {
   const [tab, setTab] = useState(0);
@@ -89,8 +90,6 @@ function Pokemon() {
       .reduce((acc, curr) => acc + curr, 0);
     return totalStat;
   };
-
-  console.log(pokemon);
 
   if (!pokemon) {
     return (
@@ -351,7 +350,7 @@ function Pokemon() {
               </div>
             </div>
             <div className="flex flex-col pt-6">
-              <h1 className="text-black text-xl font-medium">Type Defenses</h1>
+              <DamageRelation type={pokemon?.types[0].type.name} />
             </div>
           </div>
 
