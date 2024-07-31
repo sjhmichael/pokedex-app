@@ -398,38 +398,46 @@ const TypeRelation = ({ type_1, type_2 }) => {
     <div>
       <h2 className="font-medium text-xl">Type Effectiveness</h2>
 
-      <div className="mt-4">
-        <h3 className="font-medium">Damaged normally by</h3>
-        <div className="grid grid-cols-3 gap-3 mt-2">
-          {categorizedTypes.normal.map((entry) => (
-            <Type pokemonType={entry} key={entry.type} />
-          ))}
+      <div className="mt-4 space-y-6">
+        <div>
+          <h1 className="font-bold">Damaged normally by</h1>
+          <div className="grid grid-cols-3 gap-3 mt-2">
+            {categorizedTypes.normal.map((entry) => (
+              <Type pokemonType={entry} key={entry.type} />
+            ))}
+          </div>
         </div>
 
-        <h3>Weak to</h3>
-        {categorizedTypes.weak.map((entry) => (
-          <div key={entry.type}>
-            {entry.type} {entry.effectiveness}×
+        <div>
+          <h1 className="font-bold">Weak to</h1>
+          <div className="grid grid-cols-3 gap-3 mt-2">
+            {categorizedTypes.weak.map((entry) => (
+              <Type pokemonType={entry} key={entry.type} />
+            ))}
           </div>
-        ))}
+        </div>
 
-        <h3>Immune to</h3>
-        {categorizedTypes.immune.map((entry) => (
-          <div key={entry.type}>
-            {entry.type} {entry.effectiveness}×
+        <div>
+          <h1 className="font-bold">Immune to</h1>
+          <div className="grid grid-cols-3 gap-3 mt-2">
+            {categorizedTypes.immune.map((entry) => (
+              <Type pokemonType={entry} key={entry.type} />
+            ))}
           </div>
-        ))}
+        </div>
 
-        <h3>Resistant to</h3>
-        {categorizedTypes.resistant.length > 0 ? (
-          categorizedTypes.resistant.map((entry) => (
-            <div key={entry.type}>
-              {entry.type} {entry.effectiveness}×
-            </div>
-          ))
-        ) : (
-          <div>None</div>
-        )}
+        <div>
+          <h1 className="font-bold">Resistant to</h1>
+          <div className="grid grid-cols-3 gap-3 mt-2">
+            {categorizedTypes.resistant.length > 0 ? (
+              categorizedTypes.resistant.map((entry) => (
+                <Type pokemonType={entry} key={entry.type} />
+              ))
+            ) : (
+              <div>None</div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

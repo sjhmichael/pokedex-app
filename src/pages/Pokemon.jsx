@@ -353,7 +353,7 @@ function Pokemon() {
             <div className="flex flex-col pt-6">
               <TypeRelation
                 type_1={pokemon?.types[0].type.name}
-                type_2={pokemon?.types[1].type.name}
+                type_2={pokemon?.types[1] ? pokemon?.types[1].type.name : null}
               />
             </div>
           </div>
