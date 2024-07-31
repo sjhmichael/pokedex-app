@@ -5,6 +5,20 @@ import axios from "axios";
 const DamageRelation = ({ type }) => {
   const [pokemonType, setPokemonType] = useState([]);
 
+  const psychic = {
+    normal: 1,
+    fighting: 0.5,
+    bug: 2,
+    poison: 1,
+  };
+
+  const fairy = {
+    normal: 1,
+    fighting: 0.5,
+    bug: 0.5,
+    poison: 2,
+  };
+
   useEffect(() => {
     if (type) {
       axios.get(`https://pokeapi.co/api/v2/type/${type}`).then((response) => {
@@ -14,6 +28,7 @@ const DamageRelation = ({ type }) => {
   }, [type]);
 
   console.log(pokemonType);
+  console.log(psychic.poison * fairy.poison, "x");
 
   return (
     <div>

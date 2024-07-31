@@ -7,18 +7,13 @@ const News = () => {
   const [pageNum, setPageNum] = useState(1);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const signal = controller.signal;
     axios
       .get(
-        `https://api.thenewsapi.com/v1/news/all?api_token=${apiKey}&language=en&limit=3&page=${pageNum}&search=pokemon`,
-        { signal }
+        `https://api.thenewsapi.com/v1/news/all?api_token=${apiKey}&language=en&limit=3&page=${pageNum}&search=pokemon`
       )
       .then((response) => {
         setPokemonNews((prevNews) => [...prevNews, ...response.data.data]);
       });
-
-    return () => controller.abort();
   }, [pageNum, apiKey]);
 
   const increasePageNum = () => {

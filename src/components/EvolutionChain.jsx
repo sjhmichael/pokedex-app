@@ -77,25 +77,7 @@ const EvolutionChain = ({ pokemonEvolution }) => {
 
   return (
     <div className="flex flex-col w-full">
-      <div className="relative text-gray-800/20 font-black text-7xl whitespace-nowrap italic tracking-wider">
-        <div className="absolute left-0 top-9 z-10">
-          <h1>STAGE 1</h1>
-        </div>
-        <span
-          className={
-            evolutionChain[0]?.evolves_to.length > 0 ? "block" : "hidden"
-          }
-        >
-          <div className="absolute left-0 top-[204px] z-10">
-            <h1>STAGE {evolutionChain[0]?.evolves_to.length + 1}</h1>
-          </div>
-          <div className="absolute left-0 top-[396px] z-10">
-            <h1> STAGE {evolutionChain[0]?.evolves_to.length + 2}</h1>
-          </div>
-        </span>
-      </div>
-
-      <h1 className="font-medium">Evolution Chain</h1>
+      <h1 className="font-medium text-xl">Evolution Chain</h1>
       {renderEvolutionChain(evolutionChain)}
     </div>
   );

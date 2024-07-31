@@ -16,6 +16,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import EvolutionChain from "../components/EvolutionChain";
 import PokemonMoves from "../components/PokemonMoves";
 import DamageRelation from "../components/DamageRelation";
+import TypeRelation from "../components/TypeRelation";
 
 function Pokemon() {
   const [tab, setTab] = useState(0);
@@ -350,7 +351,10 @@ function Pokemon() {
               </div>
             </div>
             <div className="flex flex-col pt-6">
-              <DamageRelation type={pokemon?.types[0].type.name} />
+              <TypeRelation
+                type_1={pokemon?.types[0].type.name}
+                type_2={pokemon?.types[1].type.name}
+              />
             </div>
           </div>
 
