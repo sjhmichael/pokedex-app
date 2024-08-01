@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Capitalize from "./Capitalize";
+import { useNavigate } from "react-router-dom";
 
 const EvolutionChain = ({ pokemonEvolution }) => {
   const [evolutionChain, setEvolutionChain] = useState([]);
+  const navigate = useNavigate();
+
+  const pokemonInfo = (pokemonName) => {
+    navigate(`/pokemon/${pokemonName.toLowerCase()}`);
+  };
 
   useEffect(() => {
     const fetchEvolutions = async (chain) => {
@@ -32,6 +38,7 @@ const EvolutionChain = ({ pokemonEvolution }) => {
 
       const evolutionData = await traverseEvolutionChain(chain);
       setEvolutionChain(evolutionData);
+      console.log(evolutionData);
     };
 
     if (pokemonEvolution) {
@@ -47,8 +54,11 @@ const EvolutionChain = ({ pokemonEvolution }) => {
         key={index}
         className="flex flex-col items-center w-full justify-between space-y-6 z-20"
       >
-        <div className="flex flex-col justify-center items-center px-2">
-          <div className="w-24 flex items-center justify-center">
+        <div
+          className="flex flex-col justify-center items-center px-2 hover:cursor-pointer group"
+          onClick={() => pokemonInfo(evolution.name)}
+        >
+          <div className="w-24 flex items-center justify-center group-hover:scale-110 duration-300">
             <img src={evolution.sprites?.front_default} alt={evolution.name} />
           </div>
           <h1>

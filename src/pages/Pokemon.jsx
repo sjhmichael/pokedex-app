@@ -43,6 +43,7 @@ function Pokemon() {
         setAbilites(response.data.abilities);
         setStats(response.data.stats);
         setMoves(response.data.moves);
+        setTab(0);
       });
 
     return () => controller.abort;
@@ -91,6 +92,8 @@ function Pokemon() {
       .reduce((acc, curr) => acc + curr, 0);
     return totalStat;
   };
+
+  console.log(moves);
 
   if (!pokemon) {
     return (
@@ -365,7 +368,16 @@ function Pokemon() {
 
           {/* Tab 4 */}
           <div className={tab === 3 ? "space-y-5 mt-4" : "hidden"}>
-            <PokemonMoves pokemonMoves={moves} />
+            <div className="flex flex-col">
+              <h1 className="font-medium">Moves</h1>
+              <div className="flex flex-col">
+                {moves.map((items, index) => (
+                  <div key={index}>
+                    <Capitalize str={items.move.name} />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

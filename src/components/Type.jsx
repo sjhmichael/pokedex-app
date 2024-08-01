@@ -10,17 +10,16 @@ const Backgrounds = {
   grass: "bg-green-400",
   poison: "bg-purple-400",
   electric: "bg-yellow-400",
-  ground: "bg-amber-400",
+  ground: "bg-[#9f6941]",
   psychic: "bg-pink-400",
   rock: "bg-stone-400",
   ice: "bg-cyan-400",
   bug: "bg-lime-400",
   dragon: "bg-indigo-400",
-  ghost: "bg-fuchsia-400",
-  dark: "bg-red-400",
-  steel: "bg-red-400",
-  fairy: "bg-red-400",
-  stellar: "bg-red-400",
+  ghost: "bg-[#845b84]",
+  dark: "bg-neutral-500",
+  steel: "bg-[#60A1B8]",
+  fairy: "bg-fuchsia-400",
 };
 
 const Type = ({ pokemonType }) => {
