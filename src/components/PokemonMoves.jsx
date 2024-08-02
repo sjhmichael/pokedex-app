@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Capitalize from "./Capitalize";
+import MoveType from "./MoveType";
+import MoveCategory from "./MoveCategory";
 
 const PokemonMoves = ({ moveName }) => {
   const [moves, setMoves] = useState([]);
@@ -49,18 +51,16 @@ const PokemonMoves = ({ moveName }) => {
               {move.accuracy ? move.accuracy : "-"}
             </h1>
             <h1 className="flex justify-end">{move.pp ? move.pp : "-"}</h1>
-          </div>
 
-          <div className="flex justify-between col-span-6 mt-2 space-x-3">
-            <div className="flex basis-8/12 rounded-lg bg-gray-100 px-5 py-1">
-              <h1>Type</h1>
-              <h1 className="flex w-full justify-center">
-                <Capitalize str={move.type.name} />
-              </h1>
+            <div className="flex justify-between col-span-6 mt-2 space-x-3">
+              <MoveType type={move.type.name} />
+              {/* <h1
+                className={`flex basis-4/12 justify-center rounded-lg bg-gray-100 py-1`}
+              >
+                <Capitalize str={move.damage_class.name} />
+              </h1> */}
+              <MoveCategory category={move.damage_class.name} />
             </div>
-            <h1 className="flex basis-4/12 justify-center rounded-lg bg-gray-100 px-3 py-1">
-              <Capitalize str={move.damage_class.name} />
-            </h1>
           </div>
 
           <div className="border-b-[1px] border-gray-300 col-span-6 my-4" />
