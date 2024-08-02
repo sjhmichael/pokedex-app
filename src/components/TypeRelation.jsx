@@ -420,9 +420,13 @@ const TypeRelation = ({ type_1, type_2 }) => {
         <div>
           <h1 className="font-bold">Immune to</h1>
           <div className="grid grid-cols-3 gap-3 mt-2">
-            {categorizedTypes.immune.map((entry) => (
-              <Type pokemonType={entry} key={entry.type} />
-            ))}
+            {categorizedTypes.immune.length > 0 ? (
+              categorizedTypes.immune.map((entry) => (
+                <Type pokemonType={entry} key={entry.type} />
+              ))
+            ) : (
+              <div>None</div>
+            )}
           </div>
         </div>
 

@@ -38,7 +38,6 @@ const EvolutionChain = ({ pokemonEvolution }) => {
 
       const evolutionData = await traverseEvolutionChain(chain);
       setEvolutionChain(evolutionData);
-      console.log(evolutionData);
     };
 
     if (pokemonEvolution) {

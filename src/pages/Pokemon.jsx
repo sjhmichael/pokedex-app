@@ -93,8 +93,6 @@ function Pokemon() {
     return totalStat;
   };
 
-  console.log(moves);
-
   if (!pokemon) {
     return (
       <div className="flex flex-col w-full h-screen items-center justify-center space-y-4 px-4">
@@ -369,14 +367,7 @@ function Pokemon() {
           {/* Tab 4 */}
           <div className={tab === 3 ? "space-y-5 mt-4" : "hidden"}>
             <div className="flex flex-col">
-              <h1 className="font-medium">Moves</h1>
-              <div className="flex flex-col">
-                {moves.map((items, index) => (
-                  <div key={index}>
-                    <Capitalize str={items.move.name} />
-                  </div>
-                ))}
-              </div>
+              <PokemonMoves moveName={moves} />
             </div>
           </div>
         </div>
