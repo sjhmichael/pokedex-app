@@ -36,11 +36,8 @@ const PokemonMoves = ({ moveName }) => {
         <h1 className="flex justify-end">PP</h1>
       </div>
       {moves.map((move) => (
-        <div>
-          <div
-            key={move.id}
-            className="grid grid-cols-6 rounded-lg px-5 justify-between w-full"
-          >
+        <div key={move.id}>
+          <div className="grid grid-cols-6 rounded-lg px-5 justify-between w-full">
             <h1 className="col-span-3 font-medium">
               <Capitalize str={move.name} />
             </h1>

@@ -17,6 +17,7 @@ import EvolutionChain from "../components/EvolutionChain";
 import PokemonMoves from "../components/PokemonMoves";
 import DamageRelation from "../components/DamageRelation";
 import TypeRelation from "../components/TypeRelation";
+import PokemonType from "../components/PokemonType";
 
 function Pokemon() {
   const [tab, setTab] = useState(0);
@@ -26,6 +27,7 @@ function Pokemon() {
   const [eggGroup, setEggGroup] = useState([]);
   const [abilities, setAbilites] = useState([]);
   const [stats, setStats] = useState([]);
+  const [flavorText, setFlavorText] = useState([]);
   const { pokemonName } = useParams();
   const [moves, setMoves] = useState([]);
   const navigate = useNavigate();
@@ -69,9 +71,16 @@ function Pokemon() {
 
   useEffect(() => {
     if (pokemonSpecies) {
-      axios
-        .get(pokemonSpecies.evolution_chain.url)
-        .then((response) => setEvolution(response.data));
+      axios.get(pokemonSpecies.evolution_chain.url).then((response) => {
+        setEvolution(response.data);
+      });
+    }
+  }, [pokemonSpecies]);
+
+  useEffect(() => {
+    const text = pokemonSpecies?.flavor_text_entries;
+    if (text) {
+      setFlavorText(text.filter((items) => items.language.name === "en"));
     }
   }, [pokemonSpecies]);
 
@@ -92,6 +101,8 @@ function Pokemon() {
       .reduce((acc, curr) => acc + curr, 0);
     return totalStat;
   };
+
+  console.log(flavorText);
 
   if (!pokemon) {
     return (
@@ -139,17 +150,13 @@ function Pokemon() {
             </div>
 
             <div className="flex flex-row space-x-2">
-              <div className="flex space-x-2 font-medium text-sm items-center bg-pink rounded-full px-4 py-[4px] bg-rose-500">
-                <h1>
-                  <Capitalize str={pokemon?.types[0].type.name} />
-                </h1>
-              </div>
+              <PokemonType typeName={pokemon?.types[0].type.name} />
               {pokemon?.types[1] ? (
-                <div className="flex space-x-2 font-medium text-sm items-center bg-pink rounded-full px-4 py-[4px] bg-pink-500">
-                  <Capitalize str={pokemon?.types[1].type.name} />
+                <div className="">
+                  <PokemonType typeName={pokemon?.types[1].type.name} />
                 </div>
               ) : (
-                <div className="hidden space-x-2 font-medium text-sm items-center bg-pink rounded-full px-4 py-[4px] bg-pink-500" />
+                <div className="hidden" />
               )}
             </div>
           </div>
@@ -223,11 +230,22 @@ function Pokemon() {
 
           {/* Tab 1 */}
           <div className={tab === 0 ? "space-y-5 mt-4" : "hidden"}>
-            <p className="text-sm text-gray-600">
-              {pokemonSpecies
-                ? pokemonSpecies?.flavor_text_entries[0].flavor_text
-                : "-"}
-            </p>
+            <div className="flex flex-col">
+              <p className="text-sm text-gray-600">
+                {" "}
+                {flavorText ? flavorText[0]?.flavor_text : "-"}
+              </p>
+              <p className="text-xs text-gray-500 italic flex mt-1">
+                -Description from Pokemon version
+                <span>
+                  {flavorText ? (
+                    <Capitalize str={flavorText[0]?.version.name} />
+                  ) : (
+                    "-"
+                  )}
+                </span>
+              </p>
+            </div>
 
             <div className="bg-white rounded-2xl shadow-lg p-6 py-4 space-y-4">
               <div className="grid grid-cols-2 gap-4">
