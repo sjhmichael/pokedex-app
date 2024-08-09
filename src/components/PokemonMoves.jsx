@@ -51,7 +51,6 @@ const PokemonMoves = ({ moveName }) => {
 
             <div className="flex justify-between col-span-6 mt-2 space-x-3">
               <MoveType type={move.type.name} />
-
               <MoveCategory category={move.damage_class.name} />
             </div>
           </div>
