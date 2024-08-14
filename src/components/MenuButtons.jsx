@@ -1,10 +1,10 @@
 import React from "react";
 import { MdOutlineCatchingPokemon } from "react-icons/md";
 
-const MenuButtons = ({ label, color }) => {
+const MenuButtons = ({ label, color, link }) => {
   return (
     <div
-      className={`flex items-center px-4 py-8 rounded-3xl text-white font-bold drop-shadow-lg overflow-clip`}
+      className={`flex items-center px-4 py-8 rounded-3xl text-white font-bold drop-shadow-lg overflow-clip hover:cursor-pointer`}
       style={{ backgroundColor: `${color}` }}
     >
       <div className="relative">

@@ -10,7 +10,7 @@ const PokemonMoves = ({ moveName }) => {
   useEffect(() => {
     const fetchMoves = async () => {
       try {
-        const request = await Promise.all(
+        await Promise.all(
           moveName.map((item) => {
             axios
               .get(`https://pokeapi.co/api/v2/move/${item.move.name}`)

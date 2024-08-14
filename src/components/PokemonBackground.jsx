@@ -10,17 +10,16 @@ const Backgrounds = {
   grass: "bg-gradient-to-br from-green-400 to-green-100",
   poison: "bg-gradient-to-br from-purple-400 to-purple-100",
   electric: "bg-gradient-to-br from-yellow-400 to-yellow-100",
-  ground: "bg-gradient-to-br from-amber-400 to-amber-100",
+  ground: "bg-gradient-to-br from-[#9f6941] to-[#ece0d8]",
   psychic: "bg-gradient-to-br from-pink-400 to-pink-100",
   rock: "bg-gradient-to-br from-stone-400 to-stone-100",
   ice: "bg-gradient-to-br from-cyan-400 to-cyan-100",
   bug: "bg-gradient-to-br from-lime-400 to-lime-100",
   dragon: "bg-gradient-to-br from-indigo-400 to-indigo-100",
   ghost: "bg-gradient-to-br from-fuchsia-400 to-fuchsia-100",
-  dark: "bg-gradient-to-br from-red-400 to-red-100",
-  steel: "bg-gradient-to-br from-red-400 to-red-100",
-  fairy: "bg-gradient-to-br from-red-400 to-red-100",
-  stellar: "bg-gradient-to-br from-red-400 to-red-100",
+  dark: "bg-gradient-to-br from-neutral-500 to-neutral-100",
+  steel: "bg-gradient-to-br from-[#60A1B8] to-[#dceaef]",
+  fairy: "bg-gradient-to-br from-fuchsia-400 to-fuchsia-100",
 };
 
 const PokemonBackground = ({ element }) => {

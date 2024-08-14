@@ -9,13 +9,12 @@ import { TbPokeball } from "react-icons/tb";
 import Magikarp from "../assets/Misc/Magikarp_Jump_Pattern_01 1.png";
 import Capitalize from "../components/Capitalize";
 import BaseStats from "../components/BaseStats";
-import PokemonCry from "../components/PokemonCry";
 import clsx from "clsx";
 import PokemonBackground from "../components/PokemonBackground";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import EvolutionChain from "../components/EvolutionChain";
 import PokemonMoves from "../components/PokemonMoves";
-import DamageRelation from "../components/DamageRelation";
+
 import TypeRelation from "../components/TypeRelation";
 import PokemonType from "../components/PokemonType";
 
@@ -111,7 +110,9 @@ function Pokemon() {
         <h1 className="text-3xl font-bold text-center">
           No Pokemon with that name found {":("}
         </h1>
-        <p>Return to the main page or search for another pokemon!</p>
+        <p className="text-center">
+          Return to the main page or search for another pokemon!
+        </p>
         <button
           onClick={() => navigate("/")}
           className="border-black border-[1px] px-4 flex items-center justify-center py-2 rounded-lg bg-white drop-shadow-lg"

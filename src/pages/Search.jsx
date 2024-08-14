@@ -15,6 +15,10 @@ function Search() {
     navigate(`/pokemon/${query.current.value.toLowerCase()}`);
   };
 
+  const pokedex = () => {
+    navigate("/pokemonlist");
+  };
+
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="max-w-[480px] w-full min-h-[700px] overflow-clip relative bg-gray-100">
@@ -45,7 +49,13 @@ function Search() {
           </form>
 
           <div className="grid grid-cols-2 gap-4 mt-8">
-            <MenuButtons label={"Pokedex"} color={"#34d399"} />
+            <div
+              onClick={() => {
+                pokedex();
+              }}
+            >
+              <MenuButtons label={"Pokedex"} color={"#34d399"} />
+            </div>
             <MenuButtons label={"Moves"} color={"#f87171"} />
             <MenuButtons label={"Abilities"} color={"#0ea5e9"} />
             <MenuButtons label={"Items"} color={"#facc15"} />
