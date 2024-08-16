@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Capitalize from "./Capitalize";
 import { useNavigate } from "react-router-dom";
+import ListItem from "./ListItem";
 
 const EvolutionChain = ({ pokemonEvolution }) => {
   const [evolutionChain, setEvolutionChain] = useState([]);
@@ -53,7 +54,7 @@ const EvolutionChain = ({ pokemonEvolution }) => {
         key={index}
         className="flex flex-col items-center w-full justify-between space-y-6 z-20"
       >
-        <div
+        {/* <div
           className="flex flex-col justify-center items-center px-2 hover:cursor-pointer group"
           onClick={() => pokemonInfo(evolution.name)}
         >
@@ -63,7 +64,9 @@ const EvolutionChain = ({ pokemonEvolution }) => {
           <h1>
             <Capitalize str={evolution.name} />
           </h1>
-        </div>
+        </div> */}
+
+        <ListItem pokemon={evolution} />
 
         {evolution.evolves_to.length > 0 && (
           <>
@@ -75,7 +78,11 @@ const EvolutionChain = ({ pokemonEvolution }) => {
               <div className="border-b-[1px] w-full border-gray-300" />
             </div>
 
-            <div className="grid grid-cols-[auto_auto_auto_auto] justify-center z-20">
+            {/* <div className="grid grid-cols-[auto_auto_auto] justify-center z-20 w-full">
+              {renderEvolutionChain(evolution.evolves_to)}
+            </div> */}
+
+            <div className="justify-center z-20 w-full">
               {renderEvolutionChain(evolution.evolves_to)}
             </div>
           </>

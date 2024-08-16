@@ -11,17 +11,26 @@ const PokemonList = () => {
   const [pageLimit, setPageLimit] = useState(0);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/?limit=10&offset=${pageLimit}`)
+      .get(`https://pokeapi.co/api/v2/pokemon/?limit=10&offset=${pageLimit}`, {
+        signal,
+      })
       .then((response) => {
         setlistPokemon(response.data.results);
       })
       .catch((error) => console.log("erro fetching pokemon list", error));
+
+    return () => controller.abort;
   }, [pageLimit]);
 
   const increasePageLimit = () => {
     setPageLimit((prevPageLimit) => prevPageLimit + 10);
   };
+
+  console.log(listPokemon);
 
   return (
     <div className="w-full h-full flex items-center justify-center">
