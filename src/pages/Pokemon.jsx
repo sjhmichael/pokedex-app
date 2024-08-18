@@ -14,7 +14,6 @@ import PokemonBackground from "../components/PokemonBackground";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import EvolutionChain from "../components/EvolutionChain";
 import PokemonMoves from "../components/PokemonMoves";
-
 import TypeRelation from "../components/TypeRelation";
 import PokemonType from "../components/PokemonType";
 
@@ -29,11 +28,13 @@ function Pokemon() {
   const [flavorText, setFlavorText] = useState([]);
   const { pokemonName } = useParams();
   const [moves, setMoves] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
+    setLoading(true);
 
     axios
       .get(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, {
@@ -45,8 +46,9 @@ function Pokemon() {
         setStats(response.data.stats);
         setMoves(response.data.moves);
         setTab(0);
-      });
-
+      })
+      .catch((error) => console.log(error, "Pokemon not found"));
+    setLoading(false);
     return () => controller.abort;
   }, [pokemonName]);
 
@@ -111,7 +113,7 @@ function Pokemon() {
           No Pokemon with that name found {":("}
         </h1>
         <p className="text-center">
-          Return to the main page or search for another pokemon!
+          Return to the main page to search for another pokemon!
         </p>
         <button
           onClick={() => navigate("/")}

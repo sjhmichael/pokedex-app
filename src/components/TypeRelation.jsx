@@ -1,5 +1,4 @@
 import React from "react";
-import Capitalize from "./Capitalize";
 import Type from "./Type";
 
 const TypeRelation = ({ type_1, type_2 }) => {
