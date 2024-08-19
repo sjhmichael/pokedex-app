@@ -103,8 +103,6 @@ function Pokemon() {
     return totalStat;
   };
 
-  console.log(flavorText);
-
   if (!pokemon) {
     return (
       <div className="flex flex-col w-full h-screen items-center justify-center space-y-4 px-4">

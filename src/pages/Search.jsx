@@ -15,10 +15,6 @@ function Search() {
     navigate(`/pokemon/${query.current.value.toLowerCase()}`);
   };
 
-  const pokedex = () => {
-    navigate("/pokemonlist");
-  };
-
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="max-w-[480px] w-full min-h-[700px] overflow-clip relative bg-gray-100">
@@ -49,17 +45,23 @@ function Search() {
           </form>
 
           <div className="grid grid-cols-2 gap-4 mt-8">
-            <div
+            <button
               onClick={() => {
-                pokedex();
+                navigate("/pokemonlist");
               }}
             >
               <MenuButtons label={"Pokedex"} color={"#34d399"} />
-            </div>
+            </button>
             <MenuButtons label={"Moves"} color={"#f87171"} />
             <MenuButtons label={"Abilities"} color={"#0ea5e9"} />
             <MenuButtons label={"Items"} color={"#facc15"} />
-            <MenuButtons label={"Locations"} color={"#6d28d9"} />
+            <button
+              onClick={() => {
+                navigate("/regions");
+              }}
+            >
+              <MenuButtons label={"Regions"} color={"#6d28d9"} />
+            </button>
             <MenuButtons label={"Type Charts"} color={"#b45309"} />
           </div>
         </div>

@@ -5,15 +5,19 @@ const News = () => {
   const apiKey = process.env.REACT_APP_NEWS_API_KEY;
   const [pokemonNews, setPokemonNews] = useState([]);
   const [pageNum, setPageNum] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get(
         `https://api.thenewsapi.com/v1/news/all?api_token=${apiKey}&language=en&limit=3&page=${pageNum}&search=pokemon`
       )
       .then((response) => {
         setPokemonNews((prevNews) => [...prevNews, ...response.data.data]);
-      });
+        setLoading(false);
+      })
+      .catch((error) => console.log("error fetching news list"(error)));
   }, [pageNum, apiKey]);
 
   const increasePageNum = () => {
@@ -71,7 +75,7 @@ const News = () => {
         className="w-full border-[1px] rounded-xl justify-center items-start flex my-4 py-4 bg-white font-medium"
         onClick={increasePageNum}
       >
-        Load More
+        {loading ? "Loading..." : "Load More"}
       </button>
     </div>
   );
