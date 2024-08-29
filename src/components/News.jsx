@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Spinner from "./Spinner";
 
 const News = () => {
   const apiKey = process.env.REACT_APP_NEWS_API_KEY;
@@ -75,7 +76,14 @@ const News = () => {
         className="w-full border-[1px] rounded-xl justify-center items-start flex my-4 py-4 bg-white font-medium"
         onClick={increasePageNum}
       >
-        {loading ? "Loading..." : "Load More"}
+        {loading ? (
+          <div className="flex items-center space-x-3">
+            <Spinner />
+            <h1>Loading...</h1>
+          </div>
+        ) : (
+          "Load More"
+        )}
       </button>
     </div>
   );

@@ -4,6 +4,8 @@ import Capitalize from "../components/Capitalize";
 import { Navigate, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import { MdCatchingPokemon } from "react-icons/md";
+import Kanto from "../assets/Regions/Kanto.png";
+import RegionButton from "../components/RegionButton";
 
 function Regions() {
   const navigate = useNavigate();
@@ -46,14 +48,33 @@ function Regions() {
               />
             </div>
           </div>
-          <h1 className="w-full flex font-semibold text-2xl">Regions</h1>
-          {region.map((item) => (
-            <div className="flex rounded-2xl py-8 px-4 w-full mt-2 bg-gray-300">
-              <h1>
-                <Capitalize str={item.name} />
-              </h1>
-            </div>
-          ))}
+
+          <div>
+            <h1 className="font-bold text-3xl text-black text-balance mb-8">
+              Regions
+            </h1>
+            {/* Regions list */}
+
+            {region.map((item) => (
+              // <div className="flex rounded-2xl p-8 h-28 w-full items-center font-semibold text-xl mt-4 bg-cover bg-center overflow-clip">
+              //   <h1 className="z-10 text-white">
+              //     <Capitalize str={item.name} />
+              //   </h1>
+
+              //   <div className="relative w-full">
+              //     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[528px]">
+              //       <img
+              //         src={
+              //           "https://archives.bulbagarden.net/media/upload/thumb/7/7d/PE_Kanto_Map.png/1920px-PE_Kanto_Map.png"
+              //         }
+              //       />
+              //       <div className="bg-gradient-to-r from-gray-900/80 w-full inset-0 absolute" />
+              //     </div>
+              //   </div>
+              // </div>
+              <RegionButton regionName={item.name} />
+            ))}
+          </div>
         </div>
       </div>
     </div>
