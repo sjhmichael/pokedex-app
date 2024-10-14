@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { IoMdFemale, IoMdMale } from "react-icons/io";
 import { RiWeightLine } from "react-icons/ri";
 import { FaArrowLeft, FaRegHeart } from "react-icons/fa6";
@@ -31,6 +31,7 @@ function Pokemon() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Base pokemon information
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
@@ -70,20 +71,24 @@ function Pokemon() {
     return () => controller.abort;
   }, [pokemon]);
 
-  useEffect(() => {
-    if (pokemonSpecies) {
-      axios.get(pokemonSpecies.evolution_chain.url).then((response) => {
-        setEvolution(response.data);
-      });
-    }
-  }, [pokemonSpecies]);
-
+  // Flavor Text
   useEffect(() => {
     const text = pokemonSpecies?.flavor_text_entries;
     if (text) {
       setFlavorText(text.filter((items) => items.language.name === "en"));
     }
   }, [pokemonSpecies]);
+
+  // Pokemon evolution details
+
+  const evolutionDetails = () => {
+    setTab(2);
+    if (pokemonSpecies) {
+      axios.get(pokemonSpecies.evolution_chain.url).then((response) => {
+        setEvolution(response.data);
+      });
+    }
+  };
 
   const femaleGenderRatio = (num) => {
     const percentage = (num / 8) * 100;
@@ -211,7 +216,7 @@ function Pokemon() {
                     ? "text-black pb-4 border-b-2 border-blue-600"
                     : "text-gray-500 hover:text-gray-600 hover:border-gray-300 hover:border-b-2"
                 )}
-                onClick={() => setTab(2)}
+                onClick={() => evolutionDetails()}
               >
                 Evolution
               </li>

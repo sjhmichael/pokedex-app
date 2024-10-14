@@ -21,7 +21,7 @@ const PokemonList = () => {
       .then((response) => {
         setlistPokemon(response.data.results);
       })
-      .catch((error) => console.log("erro fetching pokemon list", error));
+      .catch((error) => console.log("Error fetching pokemon list", error));
 
     return () => controller.abort;
   }, [pageLimit]);
@@ -29,8 +29,6 @@ const PokemonList = () => {
   const increasePageLimit = () => {
     setPageLimit((prevPageLimit) => prevPageLimit + 10);
   };
-
-  console.log(listPokemon);
 
   return (
     <div className="w-full h-full flex items-center justify-center">

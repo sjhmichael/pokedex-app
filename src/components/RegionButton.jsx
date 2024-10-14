@@ -1,25 +1,28 @@
 import React from "react";
 import Capitalize from "./Capitalize";
+import Kanto from "../assets/Regions/1920px-PE_Kanto_Map.png";
+import Alola from "../assets/Regions/Alola_USUM_artwork.png";
+import Galar from "../assets/Regions/Galar_artwork.png";
+import Hoenn from "../assets/Regions/Hoenn_ORAS.png";
+import Johto from "../assets/Regions/JohtoMap.png";
+import Kalos from "../assets/Regions/Kalos_alt.png";
+import Hisui from "../assets/Regions/Legends_Arceus_Hisui.png";
+import Paldea from "../assets/Regions/Paldea_artwork.png";
+import Sinnoh from "../assets/Regions/Sinnoh_BDSP_artwork.png";
+import Unova from "../assets/Regions/Unova_B2W2_alt.png";
 
 const RegionButton = ({ regionName }) => {
   const Backgrounds = {
-    kanto:
-      "https://archives.bulbagarden.net/media/upload/thumb/7/7d/PE_Kanto_Map.png/1920px-PE_Kanto_Map.png",
-    johto: "https://archives.bulbagarden.net/media/upload/6/64/JohtoMap.png",
-    hoenn: "https://archives.bulbagarden.net/media/upload/8/85/Hoenn_ORAS.png",
-    sinnoh:
-      "https://archives.bulbagarden.net/media/upload/0/08/Sinnoh_BDSP_artwork.png",
-    unova:
-      "https://archives.bulbagarden.net/media/upload/f/fc/Unova_B2W2_alt.png",
-    kalos: "https://archives.bulbagarden.net/media/upload/8/8a/Kalos_alt.png",
-    alola:
-      "https://archives.bulbagarden.net/media/upload/0/0b/Alola_USUM_artwork.png",
-    galar:
-      "https://archives.bulbagarden.net/media/upload/c/ce/Galar_artwork.png",
-    hisui:
-      "https://archives.bulbagarden.net/media/upload/2/22/Legends_Arceus_Hisui.png",
-    paldea:
-      "https://archives.bulbagarden.net/media/upload/f/fd/Paldea_artwork.png",
+    kanto: Kanto,
+    johto: Johto,
+    hoenn: Hoenn,
+    sinnoh: Sinnoh,
+    unova: Unova,
+    kalos: Kalos,
+    alola: Alola,
+    galar: Galar,
+    hisui: Hisui,
+    paldea: Paldea,
   };
 
   return (

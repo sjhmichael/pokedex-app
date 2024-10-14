@@ -4,7 +4,6 @@ import Capitalize from "../components/Capitalize";
 import { Navigate, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa6";
 import { MdCatchingPokemon } from "react-icons/md";
-import Kanto from "../assets/Regions/Kanto.png";
 import RegionButton from "../components/RegionButton";
 
 function Regions() {
@@ -17,7 +16,7 @@ function Regions() {
       .then((response) => {
         setRegion(response.data.results);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log("Error fetching move data:", error));
   }, []);
 
   const regionInfo = () => {
