@@ -53,7 +53,7 @@ const PokemonMoves = ({ moveName }) => {
         </div>
         {moves.map((move) => (
           <div key={move.id}>
-            <div className="grid grid-cols-6 rounded-lg px-5 justify-between w-full">
+            <div className="grid grid-cols-6 rounded-lg px-5 my-4 justify-between w-full">
               <h1 className="col-span-3 font-medium">
                 <Capitalize str={move.name} />
               </h1>
@@ -71,7 +71,7 @@ const PokemonMoves = ({ moveName }) => {
               </div>
             </div>
 
-            <div className="border-b-[1px] border-gray-300 col-span-6 my-4" />
+            <div className="border-b-[1px] border-gray-300 col-span-6" />
           </div>
         ))}
       </div>

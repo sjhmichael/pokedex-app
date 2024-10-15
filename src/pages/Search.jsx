@@ -44,6 +44,7 @@ function Search() {
             />
           </form>
 
+          {/* Buttons Components */}
           <div className="grid grid-cols-2 gap-4 mt-8">
             <button
               onClick={() => {
@@ -65,6 +66,7 @@ function Search() {
             <MenuButtons label={"Type Charts"} color={"#b45309"} />
           </div>
         </div>
+        {/* News Component */}
         <News />
       </div>
     </div>

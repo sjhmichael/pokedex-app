@@ -12,7 +12,6 @@ const News = () => {
 
   useEffect(() => {
     setLoading(true);
-
     axios
       .get(
         `https://api.thenewsapi.com/v1/news/all?api_token=${apiKey}&language=en&limit=3&page=${pageNum}&search=pokemon`
