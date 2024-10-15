@@ -54,7 +54,10 @@ function Pokemon() {
         setMoves(response.data.moves);
         setTab(0);
       })
-      .catch((error) => console.log("Pokemon not found:", error));
+      .catch(
+        (error) => console.log("Pokemon not found:", error),
+        setLoading(false)
+      );
 
     return () => controller.abort;
   }, [pokemonName]);
@@ -89,7 +92,7 @@ function Pokemon() {
       setFlavorText(text.filter((items) => items.language.name === "en"));
 
       // Finish loading
-      setLoading(false);
+      // setLoading(false);
     }
   }, [pokemonSpecies]);
 
@@ -149,9 +152,6 @@ function Pokemon() {
         >
           Return to Search
         </button>
-        <div className="flex flex-col w-full h-screen items-center justify-center space-y-4 px-4 text-black">
-          <h1>Loading...</h1>
-        </div>
       </div>
     );
   } else {
@@ -264,6 +264,7 @@ function Pokemon() {
             </div>
 
             {/* Tab 1 */}
+            {/* Pokemon Base Information */}
             <div className={tab === 0 ? "space-y-5 mt-4" : "hidden"}>
               <div className="flex flex-col">
                 <p className="text-sm text-gray-600">
@@ -357,6 +358,7 @@ function Pokemon() {
             </div>
 
             {/* Tab 2 */}
+            {/* Stats and Type Relations */}
             <div className={tab === 1 ? "space-y-5 mt-4" : "hidden"}>
               <div className="text-sm text-gray-600 flex flex-col space-y-4">
                 <div className="flex flex-col space-y-4 font-medium w-full">
@@ -415,11 +417,13 @@ function Pokemon() {
             </div>
 
             {/* Tab 3 */}
+            {/* Evolution */}
             <div className={tab === 2 ? "space-y-5 mt-4" : "hidden"}>
               <EvolutionChain pokemonEvolution={evolution} />
             </div>
 
             {/* Tab 4 */}
+            {/* Moves */}
             <div className={tab === 3 ? "space-y-5 mt-4" : "hidden"}>
               <div className="flex flex-col">
                 <PokemonMoves moveName={moves} />

@@ -95,12 +95,6 @@ const PokemonList = () => {
                 <div>Load More</div>
               )}
             </button>
-            {/* <button
-              className="flex items-center justify-center w-full px-4 py-4 rounded-lg border-gray-200 border-[1px] mt-4"
-              onClick={increasePageLimit}
-            >
-              Load More
-            </button> */}
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ function Regions() {
   return (
     <div>
       <div className="w-full h-full flex items-center justify-center">
-        <div className="max-w-[480px] w-full min-h-[700px] px-4 pt-16 overflow-clip space-y-8">
+        <div className="max-w-[480px] w-full min-h-[700px] px-4 pt-16 overflow-clip space-y-8 py-8">
           <div className="flex flex-row mx-auto">
             <button>
               <FaArrowLeft
@@ -52,7 +52,6 @@ function Regions() {
             </h1>
 
             {/* Regions list */}
-
             {region.map((item) => (
               <RegionButton regionName={item.name} />
             ))}
