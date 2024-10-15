@@ -16,6 +16,8 @@ import EvolutionChain from "../components/EvolutionChain";
 import PokemonMoves from "../components/PokemonMoves";
 import TypeRelation from "../components/TypeRelation";
 import PokemonType from "../components/PokemonType";
+import Spinner from "../components/Spinner";
+import { MdCatchingPokemon } from "react-icons/md";
 
 function Pokemon() {
   const [tab, setTab] = useState(0);
@@ -124,8 +126,11 @@ function Pokemon() {
 
   if (loading) {
     return (
-      <div className="flex flex-col w-full h-screen items-center justify-center space-y-4 px-4 text-black">
-        <h1>Loading...</h1>
+      <div className="flex w-full text-black text-xl justify-center h-screen items-center">
+        <div className="flex flex-col space-x-3 items-center">
+          <MdCatchingPokemon className="fill-gray-300/30 pokeBall" size={192} />
+          <h1 className="text-xl">Loading Pokemon Information...</h1>
+        </div>
       </div>
     );
   } else if (!pokemon) {
