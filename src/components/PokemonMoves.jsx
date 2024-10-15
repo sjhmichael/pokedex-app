@@ -26,7 +26,7 @@ const PokemonMoves = ({ moveName }) => {
         setMoves(validMoves);
         setLoading(false);
       } catch (error) {
-        console.error("Error in fetchMoves:", error);
+        console.error("Error in PokemonMoves:", error);
       }
     };
 
@@ -35,9 +35,11 @@ const PokemonMoves = ({ moveName }) => {
 
   if (loading) {
     return (
-      <div className="flex flex-col w-full justify-center items-center space-x-3 text-black font-semibold mt-9">
-        <Spinner />
-        <h1>Loading...</h1>
+      <div className="flex w-full text-black text-xl justify-center mt-9">
+        <div className="flex flex-row space-x-3 items-center">
+          <Spinner />
+          <h1>Loading...</h1>
+        </div>
       </div>
     );
   } else {

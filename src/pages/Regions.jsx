@@ -23,8 +23,6 @@ function Regions() {
     navigate("/");
   };
 
-  console.log(region);
-
   return (
     <div>
       <div className="w-full h-full flex items-center justify-center">
@@ -52,25 +50,10 @@ function Regions() {
             <h1 className="font-bold text-3xl text-black text-balance mb-8">
               Regions
             </h1>
+
             {/* Regions list */}
 
             {region.map((item) => (
-              // <div className="flex rounded-2xl p-8 h-28 w-full items-center font-semibold text-xl mt-4 bg-cover bg-center overflow-clip">
-              //   <h1 className="z-10 text-white">
-              //     <Capitalize str={item.name} />
-              //   </h1>
-
-              //   <div className="relative w-full">
-              //     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[528px]">
-              //       <img
-              //         src={
-              //           "https://archives.bulbagarden.net/media/upload/thumb/7/7d/PE_Kanto_Map.png/1920px-PE_Kanto_Map.png"
-              //         }
-              //       />
-              //       <div className="bg-gradient-to-r from-gray-900/80 w-full inset-0 absolute" />
-              //     </div>
-              //   </div>
-              // </div>
               <RegionButton regionName={item.name} />
             ))}
           </div>

@@ -7,34 +7,38 @@ const News = () => {
   const [pokemonNews, setPokemonNews] = useState([]);
   const [pageNum, setPageNum] = useState(1);
   const [loading, setLoading] = useState(false);
+  let [storedNews, setStoredNews] = useState(null);
+  let [storedPageNum, setStoredPageNum] = useState(null);
 
   useEffect(() => {
-    const storedNews = localStorage.getItem("storedNews");
-    const storedPageNumber = localStorage.getItem("pageNumber");
     setLoading(true);
 
-    if (storedNews) {
-      setPokemonNews(JSON.parse(storedNews));
-      setLoading(false);
-    } else {
-      axios
-        .get(
-          `https://api.thenewsapi.com/v1/news/all?api_token=${apiKey}&language=en&limit=3&page=${pageNum}&search=pokemon`
-        )
-        .then((response) => {
-          setPokemonNews((prevNews) => [...prevNews, ...response.data.data]);
-          localStorage.setItem("storedNews", JSON.stringify(pokemonNews));
-          localStorage.setItem("storedPageNumber", pageNum);
-          setLoading(false);
-        })
-        .catch((error) => console.log("error fetching news list"(error)));
-      console.log("null");
-    }
+    axios
+      .get(
+        `https://api.thenewsapi.com/v1/news/all?api_token=${apiKey}&language=en&limit=3&page=${pageNum}&search=pokemon`
+      )
+      .then((response) => {
+        setPokemonNews((prevNews) => [...prevNews, ...response.data.data]);
+        setLoading(false);
+      })
+      .catch((error) => console.log("error fetching news list"(error)));
   }, [pageNum, apiKey]);
 
   const increasePageNum = () => {
     setPageNum((prevPageNum) => prevPageNum + 1);
   };
+
+  // useEffect(() => {
+  //   if (pageNum > storedPageNum) {
+  //     storedNews = localStorage.setItem(
+  //       "storedNews",
+  //       JSON.stringify(pokemonNews)
+  //     );
+  //     storedPageNum = localStorage.setItem("storedPageNum", pageNum);
+  //   }
+  // }, [pageNum, pokemonNews]);
+
+  // console.log(storedNews);
 
   const formatDate = (dateString) => {
     const months = [

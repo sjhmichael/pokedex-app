@@ -3,9 +3,11 @@ import axios from "axios";
 import Capitalize from "./Capitalize";
 import { useNavigate } from "react-router-dom";
 import ListItem from "./ListItem";
+import Spinner from "./Spinner";
 
 const EvolutionChain = ({ pokemonEvolution }) => {
   const [evolutionChain, setEvolutionChain] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const pokemonInfo = (pokemonName) => {
@@ -13,6 +15,8 @@ const EvolutionChain = ({ pokemonEvolution }) => {
   };
 
   useEffect(() => {
+    // Loading
+    setLoading(true);
     const fetchEvolutions = async (chain) => {
       const fetchEvolutionData = async (species) => {
         try {
@@ -39,6 +43,9 @@ const EvolutionChain = ({ pokemonEvolution }) => {
 
       const evolutionData = await traverseEvolutionChain(chain);
       setEvolutionChain(evolutionData);
+
+      // Load Finish
+      setLoading(false);
     };
 
     if (pokemonEvolution) {
@@ -91,12 +98,23 @@ const EvolutionChain = ({ pokemonEvolution }) => {
     ));
   };
 
-  return (
-    <div className="flex flex-col w-full">
-      <h1 className="font-medium text-xl">Evolution Chain</h1>
-      {renderEvolutionChain(evolutionChain)}
-    </div>
-  );
+  if (loading) {
+    return (
+      <div className="flex w-full text-black text-xl justify-center mt-9">
+        <div className="flex flex-row space-x-3 items-center">
+          <Spinner />
+          <h1>Loading...</h1>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="flex flex-col w-full">
+        <h1 className="font-medium text-xl">Evolution Chain</h1>
+        {renderEvolutionChain(evolutionChain)}
+      </div>
+    );
+  }
 };
 
 export default EvolutionChain;
